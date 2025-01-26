@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anonymous Confessions</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/fonts/remixicon.css" />
+  </head>
+  
+  <body class="flex flex-col gap-2 bg-[#121212] text-[#e0e0e0] justify-center items-center p-5 h-[100vh]">
+
+    <div class="relative w-full max-w-[600px] bg-[#1e1e1e] rounded-xl p-5 ">
+      <header>
+        <h1 class=" text-center mb-5 text-2xl text-white">💭 Anonymous Confessions</h1>
+      </header>
+
+      <main>
+        <form
+        class="flex flex-col gap-4 mb-7"
+          id="confessionForm"
+          action="/submit"
+          method="post"
+          onsubmit="return validateConfession()"
+        >
+          <textarea
+          class="bg-[#2a2a2a] text-[#e0e0e0] border-2 border-[#444] rounded-xl p-2 resize-none text-base font-mono outline-none placeholder:text-[#888]"
+            id="confessionInput"
+            name="confessionText"
+            rows="6"
+            placeholder="Write your confession here..."
+            required
+          ></textarea>
+          <input 
+          class="bg-[#2a2a2a] text-[#e0e0e0] border-2 border-[#444] rounded-xl p-2 resize-none text-base font-mono outline-none placeholder:text-[#888]"
+          name="to" type="text" placeholder="Confession For">
+          
+          <button 
+          class="bg-[#03dac5] hover:bg-[#00bfa5] text-[#121212] border-none rounded-[2rem] p-2 cursor-pointer font-bold transition-colors duration-300 ease-in-out
+ "  
+          type="submit">Submit Confession</button>
+        </form>
+
+        
+      </main>
+    </div>
+
+    <script>
+      function validateConfession() {
+        const confessionText = document.getElementById("confessionInput").value;
+        const wordCount = confessionText.trim().split(/\s+/).length;
+        if (wordCount > 100) {
+          alert("Confession cannot exceed 100 words.");
+          return false;
+        }
+        return true; 
+      }
+      document.getElementsByClassName("ri-add-line").onclick = function(){
+        const textarea =  getElementById("confessionInput");
+        textarea.focus()
+      }
+
+
+      </script>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moderator Panel</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/fonts/remixicon.css" />
+</head>
+
+<body class="flex flex-col gap-2 bg-[#121212] text-[#e0e0e0] justify-center items-center p-5 h-[100vh]">
+
+    <div class="relative w-full max-w-[600px] bg-[#1e1e1e] rounded-xl p-5 ">
+
+        <header>
+            <h1 class=" text-center mb-5 text-2xl text-white w-full">
+                🛡️ Moderator Panel
+                <a class="absolute right-3"
+                href="/moderator/agree"><i class="ri-home-2-line"></i></a></h1>
+  
+        </header>
+
+        <main>
+            <section id="moderatorSection">
+                <h2>Pending Confessions</h2>
+                <ul id="pendingConfessions">
+                    <% if (confessions.length> 0) { %>
+                        <% confessions.forEach(confession=> { %>
+                            <li class="mb-4 bg-[#2a2a2a] p-3 rounded-lg border-l-5 border-[#ffa726]">
+
+                                <p>
+                                    <%= confession.confessionText %>
+                                </p>
+
+                                <p> <span style="font-weight: bold;">FOR :</span>
+                                    <%= confession.to %>
+                                </p>
+
+                                <form action="/moderator/accept/<%= confession._id %>" method="post"
+                                    style="display:inline; margin-right: 12px;">
+                                    <button class="bg-[#03dac5] hover:bg-[#00bfa5] text-[#121212] border-none rounded-xl px-2 py-1 cursor-pointer font-bold transition-colors duration-300 ease-in-out
+                                    
+                                    type=" submit">Accept</button>
+                                </form>
+
+                                <form action="/moderator/reject/<%= confession._id %>" method="post"
+                                    style="display:inline;">
+                                    <button type="submit"
+                                        class="bg-[#ff4242] hover:bg-[#ff0000] text-[#121212] border-none rounded-xl px-2 py-1 cursor-pointer font-bold transition-colors duration-300 ease-in-out"
+                                        id="reject">Reject</button>
+                                </form>
+
+                            </li>
+
+                            <% }) %>
+                                <% } else { %>
+                                    <li class="mb-4 bg-[#2a2a2a] p-3 rounded-lg border-l-5 border-[#ffa726]">No pending
+                                        confessions.</li>
+                                    <% } %>
+                </ul>
+            </section>
+
+
+
+    </div>
+
+</body>
+
+</html>

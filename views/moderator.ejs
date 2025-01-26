@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anonymous Confessions</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/fonts/remixicon.css" />
+  </head>
+
+  <body class="flex flex-col gap-2 bg-[#121212] text-[#e0e0e0] h-[100vh] justify-center items-center p-5">
+
+    <div class="relative w-full max-w-[600px] bg-[#1e1e1e] rounded-xl p-5 ">
+      <header>
+        <h1 class=" text-center mb-5 text-2xl text-white w-full">
+          💭 Anonymous Confessions
+          <a class="absolute right-3"
+          href="/moderator"><i class="ri-arrow-left-line"></i></a>
+
+        </h1>
+
+      </header>
+
+      <h2 >All Confessions </h2>
+
+      <main>
+        <section
+          class="confessions max-h-[80vh]  overflow-x-hidden">
+
+          <ul id="confessionList" class="flex flex-col gap-4">
+
+            <% if (confessions.length > 0) { %>
+              <% confessions.forEach(confession => { %>
+                <li
+                  class="flex justify-between items-center bg-[#2a2a2a] p-3 rounded-lg
+                  border-l-5 border-[#03dac5]"
+                  id="confession-<%= confession._id %>"
+                >
+                  <p class="confessionText">
+                    <%= confession.confessionText %>
+                    <span class="block">
+                      <span class="font-bold">FOR:</span>
+                      <%= confession.to %>
+                    </span>
+                  </p>
+
+                  <button class="copyButton p-1 rounded-lg cursor-pointer hover:bg-zinc-900 transition-colors duration-300 ease-in-out">
+                    <i class="ri-file-copy-line"></i>
+                  </button>
+
+                </li>
+              <% }) %>
+            <% } else { %>
+              <li class="flex justify-between items-center bg-[#2a2a2a] p-3 rounded-lg"
+              >No confessions.</li>
+            <% } %>
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      document.querySelectorAll(".copyButton").forEach((button, index) => {
+        button.addEventListener("click", function () {
+          const confessionText = document.querySelectorAll(".confessionText")[index].innerText;
+
+          const tempTextArea = document.createElement("textarea");
+          tempTextArea.value = confessionText;
+          document.body.appendChild(tempTextArea);
+
+
+          tempTextArea.select();
+          tempTextArea.setSelectionRange(0, 99999); 
+          document.execCommand("copy");
+
+          document.body.removeChild(tempTextArea);
+        });
+      });
+    </script>
+  </body>
+</html>

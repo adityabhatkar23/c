@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moderator Panel</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="flex flex-col gap-2 bg-[#121212] text-[#e0e0e0] h-[100vh] justify-center items-center p-5">
+
+    <div class="relative w-full max-w-[600px] bg-[#1e1e1e] rounded-xl p-5">
+
+        <header class="text-center mb-5">
+            <h1 class="text-2xl text-white">🛡️ Moderator Panel</h1>
+        </header>
+
+        <main>
+            <form 
+            class="flex flex-col gap-4 mb-7"
+            id="loginForm" action="/moderator/login" method="post">
+                <input
+                class="bg-[#2a2a2a] text-[#e0e0e0] border-2 border-[#444] rounded-xl p-2 resize-none text-base font-mono outline-none placeholder:text-[#888]"
+                 type="password" id="passwordInput" name="password" placeholder="Enter Moderator Password" required>
+
+                <button
+                class="bg-[#03dac5] hover:bg-[#00bfa5] text-[#121212] border-none rounded-[2rem] p-2 cursor-pointer font-bold transition-colors duration-300 ease-in-out
+ "  
+                 type="submit">Login</button>
+            </form>
+        </main>
+    </div>
+
+    
+</body>
+</html>
